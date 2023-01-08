@@ -21,4 +21,15 @@ public class HomePageScooter {
     public HomePageScooter(WebDriver driver) {
         this.driver = driver;
     }
+
+    public String getTextFromAnswer(int index) {
+        By locator = By.id("accordion__heading-" + index);
+        return driver.findElement(locator).getText();
+    }
+
+    public String getTextFromQuestion(int index) {
+        By locator = By.id("accordion__panel-" + index);
+        return driver.findElement(locator).getText();
+    }
+
 }

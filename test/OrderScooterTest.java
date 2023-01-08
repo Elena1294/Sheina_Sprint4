@@ -1,4 +1,4 @@
-import ru.yandex.praktikum.OrderScooter;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import ru.yandex.praktikum.OrderScooter;
 
 @RunWith(Parameterized.class)
 public class OrderScooterTest {
@@ -27,8 +27,8 @@ public class OrderScooterTest {
     @Parameterized.Parameters  // добавили аннотацию для тестирования
     public static String[][] gerOrderData() {
         return new String[][]{
-                {"Анна", "Виноградова", "винокурова-22", "89999999999"},
-                {"Олег", "Егоров", "Москва", "89999999699"}
+                {"Елена", "Шеина", "Баумаеа-22", "89174586585"},
+                {"Станислав", "Петров", "Москва", "89225484565"}
         };
     }
 
@@ -36,10 +36,12 @@ public class OrderScooterTest {
     public void before() {
         //драйвер для браузера Chrome
         //создание экземпляра драйвера
-        ChromeOptions options = new ChromeOptions();
+       /* ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);*/
         // переход на страницу тестового приложения
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru");
         // создай объект класса главной страницы приложения
         objOrderScooter = new OrderScooter(driver);
